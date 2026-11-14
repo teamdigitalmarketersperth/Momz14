@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOMZ14 — Frontend Review</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #080b10; color: #f2f3f0; font: 14px/1.5 system-ui, sans-serif; }
+    header { padding: 20px 24px; border-bottom: 1px solid #35404d; }
+    h1 { margin: 0 0 12px; font-size: 18px; }
+    p { margin: 10px 0 0; color: #b6bec9; font-size: 12px; }
+    nav, .widths { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    a, button { padding: 9px 12px; border: 1px solid #66717f; border-radius: 3px; background: #121820; color: #f2f3f0; font: inherit; text-decoration: none; cursor: pointer; }
+    a:hover, button:hover, button[aria-pressed="true"] { background: #e5a93c; color: #080b10; }
+    :focus-visible { outline: 2px solid #e5a93c; outline-offset: 3px; }
+    .stage { overflow: auto; padding: 20px 0; }
+    iframe { display: block; border: 1px solid #66717f; width: 100%; height: 900px; background: #080b10; margin-inline: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MOMZ14 / Frontend review</h1>
+    <nav aria-label="Preview page">
+      <a href="../index.html" target="site-preview">Home</a>
+      <a href="../about.html" target="site-preview">About</a>
+      <a href="../music.html" target="site-preview">Music</a>
+      <a href="../studio.html" target="site-preview">Inside the Studio</a>
+      <a href="../events.html" target="site-preview">Live / Events</a>
+      <a href="../contact.html" target="site-preview">Contact</a>
+    </nav>
+    <div class="widths" role="group" aria-label="Preview viewport width">
+      <button type="button" data-width="100%" aria-pressed="true">Fit window</button>
+      <button type="button" data-width="375px" aria-pressed="false">375</button>
+      <button type="button" data-width="390px" aria-pressed="false">390</button>
+      <button type="button" data-width="430px" aria-pressed="false">430</button>
+      <button type="button" data-width="768px" aria-pressed="false">768</button>
+      <button type="button" data-width="1024px" aria-pressed="false">1024</button>
+      <button type="button" data-width="1366px" aria-pressed="false">1366</button>
+      <button type="button" data-width="1440px" aria-pressed="false">1440</button>
+      <button type="button" data-width="1920px" aria-pressed="false">1920</button>
+    </div>
+    <p>This frame loads the actual updated files. Width controls support manual review; they are not completed test results. Scroll sideways for widths larger than your window. Audio recordings play from static MP3/WAV files when supplied. The Contact form opens your email app. Fonts and Bootstrap require internet access.</p>
+  </header>
+  <div class="stage"><iframe src="../index.html" name="site-preview" title="Updated MOMZ14 website preview"></iframe></div>
+  <script>
+    document.querySelectorAll('[data-width]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelector('iframe').style.width = button.dataset.width;
+        document.querySelectorAll('[data-width]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      });
+    });
+  </script>
+</body>
+</html>
