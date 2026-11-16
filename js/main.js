@@ -1,4 +1,4 @@
-/* MOMZ14 public site: navigation, original ambient preview, static audio, email drafts. */
+/* Momz14 public site: navigation, original ambient preview, static audio, email drafts. */
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.addEventListener('error', () => {
       if (!state.source) return;
       stopPlayback();
-      if (status) status.textContent = 'This recording is unavailable. Choose another track or contact MOMZ14.';
+      if (status) status.textContent = 'This recording is unavailable. Choose another track or contact Momz14.';
     });
     window.addEventListener('pagehide', stopPlayback);
 
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.duration = Math.max(1, Number(row.dataset.trackDuration) || 214);
       setSource(row.dataset.audioSrc);
       if (title) title.textContent = row.dataset.trackTitle;
-      if (description) description.textContent = row.querySelector('span')?.textContent || 'Original MOMZ14 composition.';
+      if (description) description.textContent = row.querySelector('span')?.textContent || 'Original Momz14 composition.';
       if (meta) meta.textContent = 'Original composition · 2026';
       catalog.querySelectorAll('.music-track-row').forEach(item => item.classList.toggle('is-current', item === row));
       startPlayback();

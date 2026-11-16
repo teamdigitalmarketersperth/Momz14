@@ -1,0 +1,131 @@
+/* Artist opening, upcoming performance, works, biography and contact. */
+/* Plain artist opening; the shared background remains outside the hero. */
+.page-index .hero-section {
+  padding: clamp(72px, 10vw, 144px) 0 clamp(40px, 6vw, 80px);
+  margin-top: var(--header-height);
+  /* background: var(--bg-void); */
+}
+.page-index .hero-name,
+.page-index .hero-content {
+  max-width: 1040px;
+}
+.page-index .hero-name {
+  text-align: center;
+}
+.page-index .hero-title {
+  margin: 0;
+  color: var(--text-pure);
+  font-size: clamp(3.5rem, 12vw, 9.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+  animation: momz14-entrance 1400ms cubic-bezier(0.16, 0.7, 0.25, 1) both;
+}
+.page-index .hero-title .title-accent {
+  color: inherit;
+}
+.page-index .hero-content {
+  padding-top: 32px;
+}
+.page-index .hero-copy {
+  max-width: 800px;
+  margin-inline: auto;
+  text-align: center;
+}
+.page-index .hero-designation {
+  margin: 0 auto 16px;
+  max-width: none;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.8;
+}
+.page-index .hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  line-height: 1.5;
+  max-width: 30ch;
+  margin: 0 auto 20px;
+}
+.page-index .hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 32px;
+}
+.page-index .hero-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 24px;
+}
+.page-index #debut-event .debut-card > .row {
+  flex-direction: column;
+  text-align: center;
+}
+.page-index #debut-event .debut-card > .row > * {
+  width: 100%;
+}
+.page-index #debut-event .debut-badge {
+  justify-content: center;
+}
+.page-index #debut-event p {
+  margin-inline: auto;
+}
+.page-index #debut-event .text-lg-end {
+  text-align: center !important;
+}
+.page-index #debut-event .d-flex.flex-column {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: center !important;
+  gap: 16px 32px !important;
+}
+.page-index #debut-event .debut-info-grid {
+  text-align: center;
+}
+.page-index #discover .row > .col-lg-7 {
+  order: 2;
+}
+.page-index #discover .row > .col-lg-5 {
+  order: 1;
+}
+@keyframes momz14-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(0.12em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 767.98px) {
+  .page-index .hero-section {
+    padding-block: 64px 48px;
+  }
+  .page-index .hero-title {
+    font-size: clamp(3.5rem, 14vw, 6rem);
+  }
+  .page-index .hero-content {
+    padding-top: 24px;
+  }
+  .page-index .hero-actions {
+    gap: 12px 24px;
+  }
+  .page-index .hero-caption {
+    gap: 8px 20px;
+    margin-top: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-index .hero-title {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

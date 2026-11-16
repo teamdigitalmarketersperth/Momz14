@@ -1,4 +1,4 @@
-# MOMZ14 static site backup and recovery
+# Momz14 static site backup and recovery
 
 Back up the six HTML pages, shared `css/` and `js/` directories, original `images/`, `robots.txt`, `sitemap.xml`, and any release-ready recordings in `audio/` before each release. Keep the original client images intact. Store working audio masters separately from the public site.
 

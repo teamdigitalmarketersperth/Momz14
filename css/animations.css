@@ -1,0 +1,29 @@
+/* Motion changes presentation only; no element is hidden awaiting JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { mix-blend-mode: normal; }
+  ::view-transition-old(root) { animation: none; }
+  ::view-transition-new(root) { animation: momz14-page-enter 180ms ease-out both; }
+
+  .header-nav-link:not(.active) { position: relative; }
+  .header-nav-link:not(.active)::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 5px;
+    height: 1px; background: var(--accent-amber);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 240ms cubic-bezier(.2, .65, .3, 1);
+  }
+  .header-nav-link:not(.active):is(:hover, :focus-visible)::after { transform: scaleX(1); }
+  .btn-momz-primary, .btn-momz-ghost, .btn-text-link, .audio-play-btn, .track-row-play-btn {
+    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease, transform 240ms ease;
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :is(.btn-momz-primary, .btn-momz-ghost, .btn-text-link, .audio-play-btn, .track-row-play-btn):not(:disabled):hover { transform: translateY(-2px); }
+}
+@keyframes momz14-page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}

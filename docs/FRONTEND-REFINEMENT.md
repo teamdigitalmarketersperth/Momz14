@@ -1,11 +1,11 @@
-# MOMZ14 design and original asset inventory
+# Momz14 design and original asset inventory
 
-The six pages retain the existing cinematic editorial design: Syne display type, Plus Jakarta Sans text, warm gold and cool blue accents, the shared original horizon artwork with a dark overlay, the original MOMZ14 Creations emblem, and the existing responsive rules. This static conversion does not redesign them.
+The six pages retain the existing cinematic editorial design: Syne display type, Plus Jakarta Sans text, warm gold and cool blue accents, the shared original horizon artwork with a dark overlay, the original Momz14 Creations emblem, and the existing responsive rules. This static conversion does not redesign them.
 
 | Filename | Actual content | Resolution | Ratio / orientation | Placement |
 |---|---|---|---|---|
 | images/bg-img.jpeg | Blue/orange horizon and white starburst artwork | 1448×1086 | 4:3 landscape | Shared background on all six pages |
-| images/new-logo.png | Supplied MOMZ14 Creations metallic emblem | 500×500 | Square | Every header, navigation drawer and footer; Home and Music artwork |
+| images/new-logo.png | Supplied Momz14 Creations metallic emblem | 500×500 | Square | Every header, navigation drawer and footer; Home and Music artwork |
 | images/logo/logo.svg | Transparent white/gold wordmark and modular node | 320×60 viewBox | Wide | Retained original asset; not currently displayed |
 | images/brand/momz14-master-bg.svg | Dark celestial grid and waveform artwork | 2560×1440 viewBox, scalable | 16:9 landscape | Retained original asset; not currently displayed |
 | images/star-1.jpeg | Cosmic radial light trails | 1600×1200 | 4:3 landscape | Homepage galaxy detail |

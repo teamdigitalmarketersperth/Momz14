@@ -60,7 +60,7 @@ test('site uses static data and native audio without remote data calls or submis
 
 test('shared background and responsive behavior are retained', () => {
   const css = read('css/style.css');
-  assert.equal((css.match(/url\('\.\.\/images\/bg-img\.jpeg'\)/g) || []).length, 1);
+  assert.equal((css.match(/url\(['"]\.\.\/images\/bg-img\.jpeg['"]\)/g) || []).length, 1);
   for (const file of ['css/style.css','css/responsive.css']) {
     for (const [,value] of read(file).matchAll(/url\(['"]?([^)'"\s]+)/g)) {
       assert(fs.existsSync(path.resolve(root, path.dirname(file), value)), `${file}: missing ${value}`);

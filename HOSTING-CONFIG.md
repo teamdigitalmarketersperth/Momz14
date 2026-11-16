@@ -1,4 +1,4 @@
-# MOMZ14 static hosting
+# Momz14 static hosting
 
 Publish the six root HTML pages, `css/`, `js/`, `images/`, `robots.txt`, `sitemap.xml`, and any recordings you choose to release in `audio/` to a static host. `index.html` is the homepage. Preserve the relative paths and filename case. No build or package installation is required.
 

@@ -1,4 +1,4 @@
-# MOMZ14 static site verification
+# Momz14 static site verification
 
 See the [static conversion report](STATIC-CONVERSION.md) for the complete removal inventory, preservation checks and verification evidence. See the [image inventory](FRONTEND-REFINEMENT.md) for original image placements.
 
@@ -20,11 +20,11 @@ Home banner image removal and shared image/text alignment refinements passed all
 
 ## Menu and image-card update
 
-Applied to MOMZ14 as confirmed by the client. Header links are slightly larger with medium (500) weight. Existing studio and galaxy gallery figures now use consistently sized image cards, clean white borders, visible titles on translucent blurred overlays, and restrained hover lift/zoom. Motion is limited to hover-capable devices without reduced-motion preference. All other image elements also have white borders. Original image bytes, content, static audio and contact behavior remain unchanged. CSS parsing and all 18 existing checks passed; rendered browser verification remains unavailable.
+Applied to Momz14 as confirmed by the client. Header links are slightly larger with medium (500) weight. Existing studio and galaxy gallery figures now use consistently sized image cards, clean white borders, visible titles on translucent blurred overlays, and restrained hover lift/zoom. Motion is limited to hover-capable devices without reduced-motion preference. All other image elements also have white borders. Original image bytes, content, static audio and contact behavior remain unchanged. CSS parsing and all 18 existing checks passed; rendered browser verification remains unavailable.
 
 ## Responsive layout refinement
 
-The six-page MOMZ14 site received shared responsive fixes without changing its static behavior or original assets:
+The six-page Momz14 site received shared responsive fixes without changing its static behavior or original assets:
 
 - Section headings and adjacent labels/links wrap with consistent gaps and stack on phones.
 - Home/Music player columns stack below 992px with bounded artwork; player actions and CTA buttons fit narrow screens.
