@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const pages = ['index.html','about.html','music.html','studio.html','events.html','contact.html'];
+const pages = ['index.html','about.html','music.html','studio.html','events.html','contact.html','inspirations.html'];
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const tags = html => [...html.matchAll(/<([a-z][\w-]*)\b([^>]*)>/gi)].map(([,tag,raw]) => ({ tag: tag.toLowerCase(), raw,
   ...Object.fromEntries([...raw.matchAll(/([\w-]+)="([^"]*)"/g)].map(([,key,value]) => [key, value])) }));
