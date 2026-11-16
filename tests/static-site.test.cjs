@@ -22,7 +22,7 @@ for (const file of pages) {
     for (const href of ['css/style.css','css/responsive.css']) assert(nodes.some(node => node.tag === 'link' && node.href === href));
     const logos = nodes.filter(node => node.tag === 'img' && (hasClass(node, 'header-logo-img') || hasClass(node, 'footer-logo-img')));
     assert.equal(logos.length, 3);
-    assert(logos.every(node => node.src === 'images/logo-lp.jpeg' && node.width === '1600' && node.height === '1600'));
+    assert(logos.every(node => node.src === 'images/new-logo.png' && node.width === '500' && node.height === '500'));
     const nav = nodes.filter(node => node.tag === 'a' && hasClass(node, 'header-nav-link')).map(node => node.href);
     assert.deepEqual(nav, pages);
     for (const node of nodes) {

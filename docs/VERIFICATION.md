@@ -12,7 +12,7 @@ Browser rendering and audible playback remain unverified: the available Chrome/P
 
 ## Subsequent brand asset update
 
-The shared background now uses the supplied `images/bg-img.jpeg` with a dark readability overlay. Header, drawer and footer logos on all six pages now use `images/logo-lp.jpeg` at square proportions with separate responsive header/footer sizes. Original image bytes were not modified. This supersedes the earlier conversion snapshot’s shared SVG background and logo references; styles and page logo references were intentionally updated for this request. All 18 checks and CSS parsing passed after this update. Browser visual verification remains unavailable in this sandbox.
+The shared background now uses the supplied `images/bg-img.jpeg` with a dark readability overlay. Header, drawer and footer logos on all six pages now use `images/new-logo.png` at square proportions with separate responsive header/footer sizes. Original image bytes were not modified. This supersedes the earlier conversion snapshot’s shared SVG background and logo references; styles and page logo references were intentionally updated for this request. All 18 checks and CSS parsing passed after this update. Browser visual verification remains unavailable in this sandbox.
 
 ## Subsequent alignment update
 
