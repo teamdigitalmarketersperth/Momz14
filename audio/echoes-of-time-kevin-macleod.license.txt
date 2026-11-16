@@ -1,0 +1,29 @@
+Echoes of Time — Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+
+Source: https://incompetech.com/music/royalty-free/music.html
+Download: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Echoes%20of%20Time.mp3
+Licence: official source page supplies CC BY 4.0 attribution for each track.
+Retrieved: 2026-11-16
+Changes: none; original MP3.
+SHA-256: be9740a15e0395d4e763d8ea5f8691ee2422924f44a03b12c329ecc4a59cc2a8
+
+Official metadata:
+{
+  "title": "Echoes of Time",
+  "filename": "Echoes of Time.mp3",
+  "length": "00:04:45",
+  "instruments": "Synths",
+  "genre": "10",
+  "bpm": null,
+  "description": "Deep, rich, and thick soundscape with semi-tonal bells.",
+  "feel": "Dark, Mysterious, Unnerving",
+  "uploaded": "2013-05-01",
+  "isrc": "USUAN1300029",
+  "collection": "35",
+  "sheetmusic": null,
+  "video": "https://youtu.be/Vr7fYl7Or08",
+  "itunes": "https://itunes.apple.com/us/album/echoes-of-time/id941899929?i=941902998",
+  "filmmusicURL": "https://incompetech.filmmusic.io/song/3699-echoes-of-time/"
+}

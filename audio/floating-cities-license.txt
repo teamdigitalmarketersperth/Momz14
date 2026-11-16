@@ -1,0 +1,29 @@
+Floating Cities — Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+
+Source: https://incompetech.com/music/royalty-free/music.html
+Download: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Floating%20Cities.mp3
+Licence statement: official source page supplies CC BY 4.0 attribution for each track.
+Retrieved: 2026-11-16
+Changes: none; original MP3 file.
+SHA-256: e7365652410d1fbc8a14d87537855d625c1a5fa8b7de8c626f47c13256ef2ddd
+
+Official track metadata:
+{
+  "title": "Floating Cities",
+  "filename": "Floating Cities.mp3",
+  "length": "00:03:04",
+  "instruments": "Synths, Percussion",
+  "genre": "22",
+  "bpm": "120",
+  "description": "It is the future? It certainly sounds like it... What would I use this for? Probably a video game with non-action gameplay. Certainly a montage of some futuristic film... or maybe one of those sandwiched scenes where a person is walking in the rain, but you don't get any of the sounds of the actual rain... just this piece. No dialog, no voiceover, just walking. Do they have a name for those scenes? They must.",
+  "feel": "Somber, Relaxed, Mystical, Calming",
+  "uploaded": "2016-04-04",
+  "isrc": "USUAN1600018",
+  "collection": "30",
+  "sheetmusic": null,
+  "video": "https://youtu.be/5nBQs53MXmQ",
+  "itunes": "https://itunes.apple.com/us/album/floating-cities/id1110322082?i=1110322156",
+  "filmmusicURL": "https://incompetech.filmmusic.io/song/3765-floating-cities/"
+}

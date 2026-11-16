@@ -1,0 +1,29 @@
+Lightless Dawn — Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+
+Source: https://incompetech.com/music/royalty-free/music.html
+Download: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Lightless%20Dawn.mp3
+Licence: official source page supplies CC BY 4.0 attribution for each track.
+Retrieved: 2026-11-16
+Changes: none; original MP3.
+SHA-256: 59fd69e4432c95887d626e8055113da8fb0da9a8ccac85c6b7da6a6031c4f325
+
+Official metadata:
+{
+  "title": "Lightless Dawn",
+  "filename": "Lightless Dawn.mp3",
+  "length": "00:06:20",
+  "instruments": "Synths, Percussion, Strings, Bells",
+  "genre": "7",
+  "bpm": "90",
+  "description": "Add a dark intensity to any scene... Is there building action? Is there a clue? Is there a need for ambiguity?",
+  "feel": "Dark, Eerie, Mysterious, Mystical, Somber, Unnerving",
+  "uploaded": "2009-12-31",
+  "isrc": "USUAN1100655",
+  "collection": null,
+  "sheetmusic": null,
+  "video": null,
+  "itunes": "https://itunes.apple.com/us/album/lightless-dawn/id942802618?i=942802624",
+  "filmmusicURL": "https://incompetech.filmmusic.io/song/3982-lightless-dawn/"
+}
