@@ -30,7 +30,7 @@ for (const file of pages) {
       if (node.tag === 'label') assert(ids(file).includes(node.for), 'label connects to a field');
       for (const attr of ['href','src','action','data-audio-src']) {
         const value = node[attr];
-        if (!value || /^(?:[a-z][\w+.-]*:|\/\/)/i.test(value)) continue;
+        if (!value || /^(?:[a-z][\w+.-]*:|\/\/)/i.test(value) || (attr === 'action' && value === '/contact')) continue;
         assert.notEqual(value, '#');
         const [pathname, fragment] = value.split('#');
         const target = pathname ? decodeURIComponent(pathname.split('?')[0]) : file;
@@ -42,10 +42,10 @@ for (const file of pages) {
   });
 }
 
-test('site uses static data and native audio without remote data calls or submission', () => {
+test('site uses native audio and the shared Node contact endpoint', () => {
   const js = read('js/main.js');
   assert.doesNotMatch(js, removedRuntime);
-  assert.doesNotMatch(js, /\b(?:fetch|XMLHttpRequest|FormData|WebSocket)\s*\(/);
+  assert.doesNotMatch(js, /\b(?:XMLHttpRequest|WebSocket)\s*\(/);
   assert.doesNotMatch(js, /\b(?:localStorage|indexedDB)\b/);
   assert.match(js, /getElementById\('momzAudio'\)/);
   for (const file of ['index.html','music.html']) {
@@ -54,8 +54,8 @@ test('site uses static data and native audio without remote data calls or submis
   }
   assert(documents['music.html'].filter(node => hasClass(node, 'music-track-row')).every(node => 'data-audio-src' in node));
   const form = documents['contact.html'].find(node => node.tag === 'form');
-  assert.equal(form.action, 'mailto:booking@momz14.com');
-  assert.equal(form.method, 'get');
+  assert.equal(form.action, '/contact');
+  assert.equal(form.method, 'post');
 });
 
 test('shared background and responsive behavior are retained', () => {
@@ -71,9 +71,30 @@ test('shared background and responsive behavior are retained', () => {
 });
 
 test('removed runtime directories and executable files are absent', () => {
-  for (const dir of ['admin','api','database','uploads','graphify-out']) assert(!fs.existsSync(path.join(root, dir)), dir);
-  const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? walk(path.join(dir, entry.name)) : [path.join(dir, entry.name)]);
+  for (const dir of ['admin','api','database','uploads','graphify-out','vendor']) assert(!fs.existsSync(path.join(root, dir)), dir);
+  const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? (['.git', 'node_modules'].includes(entry.name) ? [] : walk(path.join(dir, entry.name))) : [path.join(dir, entry.name)]);
   assert(!walk(root).some(file => /\.(?:php\d*|sql)$/i.test(file)));
+  for (const file of ['composer.json', 'composer.lock']) assert(!fs.existsSync(path.join(root, file)));
   assert.doesNotMatch(read('robots.txt'), removedRuntime);
   assert.doesNotMatch(read('docs/preview.html'), removedRuntime);
+});
+
+test('contact forms appear only on the homepage and Contact Us page and reuse one handler', () => {
+  const original = read('contact.html');
+  const form = html => html.match(/<form id="momzContactForm"[\s\S]*?<\/form>/)[0].replace(/^[ \t]+$/gm, '');
+  const support = html => html.match(/<p id="contactEmailNotice"[\s\S]*?<form id="momzContactForm"/)[0];
+  for (const file of pages) {
+    const html = read(file);
+    assert.equal((html.match(/id="momzContactForm"/g) || []).length, ['index.html', 'contact.html'].includes(file) ? 1 : 0, `${file}: form count`);
+    if (file !== 'index.html') {
+      assert(!html.includes('section-contact-form'), `${file}: no additional form section`);
+      continue;
+    }
+    assert.equal(form(html), form(original), `${file}: identical fields and validation`);
+    assert.equal(support(html), support(original), `${file}: identical notices and feedback`);
+    assert.equal((html.match(/id="momzContactForm"/g) || []).length, 1);
+    assert.match(html, /<section class="section-contact-form" aria-label="Contact form">[\s\S]*?<\/form>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/section>\s*<\/main>\s*<!--[\s\S]*?-->\s*<footer/);
+    assert.equal(documents[file].filter(node => node.tag === 'script' && node.src === 'js/main.js').length, 1);
+  }
+  assert(!original.includes('section-contact-form'), 'original contact page stays unchanged');
 });

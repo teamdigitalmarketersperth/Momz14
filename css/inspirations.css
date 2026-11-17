@@ -1,30 +1,117 @@
-/* Three existing inspiration lists presented as open editorial compositions. */
-.inspiration-intro { padding-bottom: 32px; }
-.inspiration-intro h1 { margin: 0; font-size: clamp(2rem, 5.5vw, 4.5rem); font-weight: 600; line-height: 1.2; letter-spacing: -.035em; }
-.inspiration-section { padding-block: var(--section-pad-y); }
-.inspiration-section-heading { max-width: 700px; margin: 0 auto 40px; text-align: center; }
-.inspiration-number { display: block; color: var(--accent-amber); font-size: .7rem; margin-bottom: 14px; }
-.inspiration-section h2 { font-size: clamp(1.4rem, 2.8vw, 2.3rem); margin-bottom: 20px; }
-.inspiration-section-heading p { font-size: .9rem; color: var(--text-muted); margin: 0 auto; }
-.inspiration-names { list-style: none; padding: 0; margin: 0; }
-.inspiration-names li { color: var(--text-pure); break-inside: avoid; }
-.inspiration-musical .inspiration-names { max-width: 840px; margin-inline: auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 40px; text-align: center; }
-.inspiration-musical li { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.6; }
-.inspiration-visual .inspiration-names { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 32px; max-width: 960px; margin-inline: auto; }
-.inspiration-visual li { font-family: var(--font-display); font-size: clamp(1.2rem, 2.4vw, 2rem); line-height: 1.6; max-width: 100%; }
-.inspiration-literature .inspiration-names { columns: 2; column-gap: 80px; max-width: 720px; margin-inline: auto; }
-.inspiration-literature li { font-size: 1.05rem; line-height: 1.75; padding-bottom: 24px; }
-.inspiration-odyssey { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 16px 24px; padding-block: 24px 64px; }
+/* Page-only editorial styling; existing text, images and shared chrome stay untouched. */
+.page-inspirations main {
+  background:
+    radial-gradient(ellipse at 90% 4%, rgb(229 169 60 / 7%), transparent 48%),
+    linear-gradient(180deg, transparent, rgb(8 11 16 / 62%));
+}
+.inspiration-intro {
+  padding-block: calc(var(--header-height) + clamp(56px, 7vw, 100px)) clamp(48px, 6vw, 80px);
+  text-align: left;
+}
+.inspiration-intro h1 {
+  margin: 0;
+  font-size: clamp(2rem, 7.8vw, 6.75rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.065em;
+}
+.inspiration-section { padding: 0; }
+.inspiration-section > .container {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.7fr);
+  align-items: start;
+  gap: clamp(36px, 5vw, 72px);
+  padding-block: clamp(48px, 6vw, 80px);
+  border-top: 1px solid rgb(229 169 60 / 22%);
+}
+.inspiration-section-heading {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 20px;
+  margin: 0;
+  text-align: left;
+}
+.inspiration-number {
+  padding-top: 5px;
+  color: var(--accent-amber);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  line-height: 1.5;
+  letter-spacing: .08em;
+}
+.inspiration-section h2 {
+  margin-bottom: 20px;
+  font-size: clamp(1.35rem, 2.25vw, 2rem);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.inspiration-section-heading p {
+  max-width: 26ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .85rem;
+  line-height: 1.9;
+}
+.inspiration-names {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(24px, 4vw, 56px);
+  list-style: none;
+  padding: 0;
+  margin: -14px 0 0;
+}
+.inspiration-names li {
+  min-width: 0;
+  padding-block: 14px;
+  border-bottom: 1px solid rgb(242 243 240 / 10%);
+  color: var(--text-pure);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.55vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -.025em;
+  overflow-wrap: normal;
+}
+.inspiration-visual li { font-size: clamp(1.15rem, 1.8vw, 1.65rem); }
+.inspiration-literature li {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-weight: 400;
+  letter-spacing: -.015em;
+}
+.inspiration-odyssey {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  padding-block: 32px 72px;
+  border-top: 1px solid rgb(229 169 60 / 22%);
+}
 .inspiration-odyssey button:disabled { opacity: .75; cursor: default; }
-.inspiration-placeholder { color: var(--text-muted); font-size: .75rem; }
+.inspiration-placeholder {
+  max-width: 36ch;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  line-height: 1.8;
+  text-align: right;
+}
 @media (max-width: 991.98px) {
-  .inspiration-musical .inspiration-names { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .inspiration-section > .container { grid-template-columns: 1fr; gap: 36px; }
+  .inspiration-section-heading { max-width: 560px; }
+  .inspiration-section h2 { font-size: clamp(1.4rem, 3.5vw, 1.8rem); }
+  .inspiration-section-heading p { max-width: none; }
 }
 @media (max-width: 575.98px) {
-  .inspiration-section-heading { margin-bottom: 32px; }
-  .inspiration-musical .inspiration-names { grid-template-columns: 1fr; gap: 20px; }
-  .inspiration-visual .inspiration-names { gap: 16px 24px; }
-  .inspiration-visual li { font-size: 1.25rem; }
-  .inspiration-literature .inspiration-names { columns: 1; text-align: center; }
-  .inspiration-odyssey { flex-direction: column; padding-bottom: 48px; text-align: center; }
+  .inspiration-intro { padding-top: calc(var(--header-height) + 48px); }
+  .inspiration-section > .container { padding-block: 40px; gap: 32px; }
+  .inspiration-section-heading { grid-template-columns: 22px minmax(0, 1fr); gap: 14px; }
+  .inspiration-section h2 { margin-bottom: 14px; }
+  .inspiration-names { grid-template-columns: 1fr; margin-top: -10px; }
+  .inspiration-names li { padding-block: 12px; }
+  .inspiration-odyssey { align-items: flex-start; flex-direction: column; padding-bottom: 48px; }
+  .inspiration-placeholder { text-align: left; }
 }

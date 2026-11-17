@@ -27,3 +27,10 @@
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
 }
+
+/* Accessibility override only; AOS owns image transforms during normal motion. */
+@media (prefers-reduced-motion: reduce) {
+  [data-aos="zoom-in-up"][data-aos] {
+    opacity: 1; transform: none; transition: none; pointer-events: auto;
+  }
+}

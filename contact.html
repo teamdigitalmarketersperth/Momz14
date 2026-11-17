@@ -26,6 +26,7 @@
   <!-- Momz14 Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/vendor/aos.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body class="page-contact">
@@ -102,7 +103,7 @@
          ======================================================================== -->
     <section class="contact-standalone-hero-wrap" id="contact-top-portrait">
       <div class="container">
-        <div class="contact-standalone-image-box">
+        <div class="contact-standalone-image-box" data-aos="zoom-in-up">
           <div class="contact-standalone-overlay"></div>
           
           <img src="images/start-5.jpeg" alt="The Momz14 studio: keyboards, mixing desk, monitors and outboard processors" width="1600" height="1200" class="contact-studio-image" loading="eager" decoding="async" fetchpriority="high">
@@ -174,14 +175,16 @@
               <span class="section-tag mb-2">Send a Message</span>
               <h2 class="fs-4 fw-bold text-white mb-4">Official Inquiry Form</h2>
 
-              <p id="contactEmailNotice" class="small text-muted">This form opens an email draft in your email app. Review and send it there, or email <a href="mailto:booking@momz14.com">booking@momz14.com</a> directly.</p>
-              <noscript><p class="small text-muted">To send your inquiry without JavaScript, <a href="mailto:booking@momz14.com">email booking@momz14.com</a> directly.</p></noscript>
+              <p id="contactEmailNotice" class="small text-muted">Send your inquiry using this form, or email <a href="mailto:team.digitalmarketersperth@gmail.com">team.digitalmarketersperth@gmail.com</a> directly.</p>
+              <noscript><p class="small text-muted">To send your inquiry without JavaScript, <a href="mailto:team.digitalmarketersperth@gmail.com">email team.digitalmarketersperth@gmail.com</a> directly.</p></noscript>
               <!-- Alerts -->
               <div class="form-feedback-alert" id="formSuccessAlert" role="alert"></div>
               <div class="form-feedback-alert" id="formErrorAlert" role="alert"></div>
 
-              <form id="momzContactForm" action="mailto:booking@momz14.com" method="get" aria-describedby="contactEmailNotice">
+              <form id="momzContactForm" action="/contact" method="post" aria-describedby="contactEmailNotice">
                 
+                <input type="text" name="contact_reference" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+
                 <div class="row g-3">
                   <div class="col-12 col-md-6 momz-form-group">
                     <label for="contactName" class="momz-form-label">Full Name *</label>
@@ -206,10 +209,10 @@
 
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4">
                   <button type="submit" class="btn-momz-primary">
-                    <span>Open Email Draft</span>
+                    <span>Send Message</span>
                     <i aria-hidden="true" class="bi bi-send"></i>
                   </button>
-                  <span class="mono-num small text-muted">Via your email app</span>
+                  <span class="mono-num small text-muted">Secure contact form</span>
                 </div>
 
               </form>
@@ -260,6 +263,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="js/main.js"></script>
+  <script src="js/vendor/aos.js"></script>
   <script src="js/animations.js"></script>
 </body>
 </html>

@@ -380,7 +380,8 @@ figure {
 .section-studio,
 .section-influences,
 .section-galaxy,
-.section-contact-cta {
+.section-contact-cta,
+.section-contact-form {
   position: relative;
   padding: var(--section-pad-y) 0;
 }

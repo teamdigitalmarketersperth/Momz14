@@ -1,6 +1,11 @@
 /* Coordinate each page opening, then reveal remaining content once on scroll. */
 document.addEventListener('DOMContentLoaded', () => {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  window.AOS?.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 80,
+    disable: () => motion.matches });
+  document.querySelectorAll('[data-aos] img').forEach(image => {
+    image.addEventListener('load', () => window.AOS?.refresh(), { once: true });
+  });
   if (motion.matches || typeof window.IntersectionObserver !== 'function' || typeof Element.prototype.animate !== 'function') return;
 
   const candidates = [...document.querySelectorAll([
@@ -15,9 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'main figcaption', 'main .discover-image-caption', 'main .contact-standalone-badge',
     'main .hero-caption', 'footer p', 'footer .footer-col-title', 'footer a[href]',
     'footer .footer-nav-list', 'footer .footer-social-row', 'footer .footer-bottom-bar'
-  ].join(', '))].filter(target => (target.tagName !== 'SPAN' || target.textContent.trim()) && !target.closest('.hero-title, .header-brand, .player-status, .form-feedback-alert, .form-honeypot'));
+  ].join(', '))].filter(target => !target.disabled && (target.tagName !== 'SPAN' || target.textContent.trim()) && !target.closest('.hero-title, .header-brand, .player-status, .form-feedback-alert, .form-honeypot'));
   const selected = new Set(candidates);
   const targets = candidates.filter(target => {
+    if (target.closest('[data-aos]')) return false;
     // Animate a text/control group once, without layering effects on its children.
     for (let parent = target.parentElement; parent; parent = parent.parentElement) {
       if (selected.has(parent)) return false;
@@ -32,15 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (motion.matches || revealed.has(target)) return;
     revealed.add(target);
     observer.unobserve(target);
-    const image = target.tagName === 'IMG';
-    const interactive = /^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(target.tagName) || Boolean(target.querySelector('a, button, input, select, textarea'));
     const heading = /^H[1-6]$/.test(target.tagName);
+    const interactive = !heading && (/^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(target.tagName) || Boolean(target.querySelector('a, button, input, select, textarea')));
     const animation = target.animate([
-      { opacity: image ? .82 : interactive ? .85 : .6,
-        transform: image ? 'scale(.975)' : interactive ? 'translateY(0)' : 'translateY(12px)' },
-      { opacity: 1, transform: image ? 'scale(1)' : 'translateY(0)' }
+      { opacity: interactive ? .85 : .6,
+        transform: interactive ? 'translateY(0)' : 'translateY(12px)' },
+      { opacity: 1, transform: 'translateY(0)' }
     ], {
-      duration: image ? 820 : heading ? 720 : 620,
+      duration: heading ? 720 : 620,
       delay: delays.get(target), easing: 'cubic-bezier(.2, .65, .3, 1)', fill: 'backwards'
     });
     active.add(animation);

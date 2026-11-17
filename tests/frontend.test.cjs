@@ -24,7 +24,7 @@ class Element {
   focus() { this.focused = true; }
 }
 
-async function fixture({ tracks = [], source = '', contact = false, invalid = false, noPlayer = false, href = 'https://momz14.test/music.html' } = {}) {
+async function fixture({ tracks = [], source = '', contact = false, invalid = false, noPlayer = false, sendFails = false, href = 'https://momz14.test/music.html' } = {}) {
   const ids = {};
   for (const id of ['audioPlayBtn','playIcon','audioProgressWrap','audioCurrentTime','audioTotalTime','audioVolume','playerStatus','formSuccessAlert','formErrorAlert']) ids[id] = new Element();
   ids.audioVolume.value = '.8';
@@ -55,6 +55,7 @@ async function fixture({ tracks = [], source = '', contact = false, invalid = fa
       return input;
     });
     form.all = { '[required]': fields }; form.reportValidity = () => !invalid;
+    form.action = '/contact'; form.one = { 'button[type="submit"]': new Element() };
   }
   const intervals = new Map();
   const audio = new Element();
@@ -72,11 +73,15 @@ async function fixture({ tracks = [], source = '', contact = false, invalid = fa
   }
   const location = { href, origin: new URL(href).origin };
   const window = { scrollY: 0, location, AudioContext, addEventListener() {}, matchMedia: () => ({ addEventListener() {} }) };
-  vm.runInNewContext(fs.readFileSync('js/main.js', 'utf8'), { document, window, URL, console,
-    fetch() { throw new Error('Static site must not request remote data'); },
+  const requests = [];
+  class FormData extends Map {
+    constructor() { super(fields.map((field, i) => [['name','email','subject','message'][i], field.value])); }
+  }
+  vm.runInNewContext(fs.readFileSync('js/main.js', 'utf8'), { document, window, URL, console, FormData,
+    async fetch(url, options) { requests.push({ url, options }); return { ok: !sendFails, json: async () => ({ ok: !sendFails, message: sendFails ? 'Your message could not be sent. Please try again later.' : 'Thank you. Your message has been submitted successfully.' }) }; },
     setInterval: cb => { intervals.set(1, cb); return 1; }, clearInterval: id => intervals.delete(id) });
   document.ready();
-  return { ids, title, description, meta, catalog, rows, drawer, header, main, footer, toggle, close, first, last, document, audio, intervals, form, fields, location };
+  return { ids, title, description, meta, catalog, rows, drawer, header, main, footer, toggle, close, first, last, document, audio, intervals, form, fields, location, requests };
 }
 
 test('MP3 and WAV use the HTML audio element with duration, seek, volume and pause controls', async () => {
@@ -169,26 +174,34 @@ test('drawer keeps semantics, focus trapping and Escape without a music player',
   assert.equal(f.main.inert, false); assert.equal(f.toggle.focused, true);
 });
 
-test('contact composes an encoded email draft, preserves text and never claims delivery', async () => {
-  const f = await fixture({ contact: true, noPlayer: true });
-  f.fields[3].value = 'Line one & ? #\nLine two: café';
-  await f.form.emit('submit');
-  const draft = new URL(f.location.href);
-  assert.equal(draft.protocol, 'mailto:');
-  assert.equal(draft.pathname, 'booking@momz14.com');
-  assert.equal(draft.searchParams.get('subject'), 'Festival & commission?');
-  assert.match(draft.searchParams.get('body'), /Name: Artist Name\r\nEmail: person@example.test/);
-  assert.match(draft.searchParams.get('body'), /Line one & \? #\nLine two: café/);
-  assert.equal(f.fields[3].value, 'Line one & ? #\nLine two: café');
-  assert.match(f.ids.formSuccessAlert.textContent, /Review it and send it there/);
-  assert.doesNotMatch(f.ids.formSuccessAlert.textContent, /has been sent|delivered/i);
+test('both contact forms submit all four fields to the Node endpoint', async () => {
+  for (const page of ['index.html', 'contact.html']) {
+    const f = await fixture({ contact: true, noPlayer: true, href: `https://momz14.test/${page}` });
+    f.fields[3].value = 'Line one & ? #\nLine two: café';
+    await Promise.all([f.form.emit('submit'), f.form.emit('submit')]);
+    assert.equal(f.requests.length, 1);
+    assert.equal(f.requests[0].url, '/contact');
+    assert.equal(f.requests[0].options.method, 'POST');
+    const data = JSON.parse(f.requests[0].options.body);
+    assert.deepEqual(Object.values(data), f.fields.map(field => field.value));
+    assert.match(f.ids.formSuccessAlert.textContent, /submitted successfully/);
+    assert.equal(f.form.one['button[type="submit"]'].disabled, false);
+  }
 });
 
-test('invalid and whitespace-only contact fields do not open drafts', async () => {
+test('failed contact submissions keep the input and restore the button', async () => {
+  const f = await fixture({ contact: true, noPlayer: true, sendFails: true });
+  await f.form.emit('submit');
+  assert.match(f.ids.formErrorAlert.textContent, /could not be sent/);
+  assert.equal(f.fields[0].value, 'Artist Name');
+  assert.equal(f.form.one['button[type="submit"]'].disabled, false);
+});
+
+test('invalid and whitespace-only contact fields never reach the server', async () => {
   const f = await fixture({ contact: true, noPlayer: true, invalid: true });
-  await f.form.emit('submit'); assert.equal(f.location.href, 'https://momz14.test/music.html');
+  await f.form.emit('submit'); assert.equal(f.requests.length, 0);
   const g = await fixture({ contact: true, noPlayer: true });
   g.fields[1].value = '   ';
-  await g.form.emit('submit'); assert.equal(g.location.href, 'https://momz14.test/music.html');
+  await g.form.emit('submit'); assert.equal(g.requests.length, 0);
   assert.equal(g.fields[1].focused, true);
 });

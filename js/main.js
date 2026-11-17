@@ -1,4 +1,4 @@
-/* Momz14 public site: navigation, original ambient preview, static audio, email drafts. */
+/* Momz14 public site: navigation, original ambient preview, static audio, contact submissions. */
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
@@ -195,9 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('momzContactForm');
   const success = document.getElementById('formSuccessAlert');
   const error = document.getElementById('formErrorAlert');
-  form?.addEventListener('submit', (event) => {
+  let submitting = false;
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    if (submitting || !form.reportValidity()) return;
     error.className = success.className = 'form-feedback-alert';
     const fields = [...form.querySelectorAll('[required]')];
     const empty = fields.find(field => !field.value.trim());
@@ -207,13 +208,26 @@ document.addEventListener('DOMContentLoaded', () => {
       empty.focus();
       return;
     }
-    const name = document.getElementById('contactName').value.trim();
-    const email = document.getElementById('contactEmail').value.trim();
-    const subject = document.getElementById('contactSubject').value.trim();
-    const message = document.getElementById('contactMessage').value.trim();
-    const body = `Name: ${name}\r\nEmail: ${email}\r\n\r\n${message}`;
-    window.location.href = `mailto:booking@momz14.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    success.textContent = 'An email draft has been requested in your email app. Review it and send it there. If no app opens, email booking@momz14.com directly. Your message stays here.';
-    success.className = 'form-feedback-alert success';
+    const button = form.querySelector('button[type="submit"]');
+    submitting = true;
+    button.disabled = true;
+    form.setAttribute('aria-busy', 'true');
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const result = await response.json();
+      const alert = response.ok && result.ok ? success : error;
+      alert.textContent = result.message || 'Your message could not be sent. Please try again later.';
+      alert.className = `form-feedback-alert ${alert === success ? 'success' : 'error'}`;
+    } catch {
+      error.textContent = 'Your message could not be sent. Please try again later.';
+      error.className = 'form-feedback-alert error';
+    } finally {
+      submitting = false;
+      button.disabled = false;
+      form.removeAttribute('aria-busy');
+    }
   });
 });
