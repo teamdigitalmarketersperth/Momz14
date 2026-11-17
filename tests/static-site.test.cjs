@@ -82,7 +82,7 @@ test('removed runtime directories and executable files are absent', () => {
 test('contact forms appear only on the homepage and Contact Us page and reuse one handler', () => {
   const original = read('contact.html');
   const form = html => html.match(/<form id="momzContactForm"[\s\S]*?<\/form>/)[0].replace(/^[ \t]+$/gm, '');
-  const support = html => html.match(/<p id="contactEmailNotice"[\s\S]*?<form id="momzContactForm"/)[0];
+  const support = html => html.match(/<noscript>[\s\S]*?<form id="momzContactForm"/)[0];
   for (const file of pages) {
     const html = read(file);
     assert.equal((html.match(/id="momzContactForm"/g) || []).length, ['index.html', 'contact.html'].includes(file) ? 1 : 0, `${file}: form count`);
