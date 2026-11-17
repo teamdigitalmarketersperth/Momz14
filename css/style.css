@@ -49,7 +49,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(#080b10ed, #080b10e8),
+    linear-gradient(#080b10ed, #080b10a6),
     var(--site-bg-image) center / cover no-repeat;
 }
 a {
