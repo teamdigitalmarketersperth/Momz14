@@ -8,7 +8,7 @@
   .header-nav-link:not(.active) { position: relative; }
   .header-nav-link:not(.active)::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 5px;
-    height: 1px; background: var(--accent-amber);
+    height: 1px; background: #fff;
     transform: scaleX(0); transform-origin: left;
     transition: transform 240ms cubic-bezier(.2, .65, .3, 1);
   }

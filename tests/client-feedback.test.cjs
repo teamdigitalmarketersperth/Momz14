@@ -14,7 +14,7 @@ test('requested copy is removed across the public pages without leaving empty se
   assert.match(read('about.html'), /Momz14 has created a sound through years of dedication/);
 });
 
-test('homepage keeps its full-colour background and its character entrance without changing audio', () => {
+test('homepage keeps its background overlay, character entrance, and audio', () => {
   const html = read('index.html');
   const hero = html.match(/<section[^>]*id="hero"[\s\S]*?<\/section>/)[0];
   assert.match(hero, /class="container hero-name"/);
@@ -27,9 +27,7 @@ test('homepage keeps its full-colour background and its character entrance witho
   assert.doesNotMatch(html, /<audio[^>]*autoplay/);
   const css = read('css/home.css');
   const background = read('css/style.css').match(/body::before\s*\{([^}]*)\}/)[1];
-  assert.match(background, /opacity: 1/);
-  assert.match(background, /background: var\(--site-bg-image\) center \/ cover no-repeat/);
-  assert.doesNotMatch(background, /gradient|filter:/);
+  assert.match(background, /background: linear-gradient\(rgb\(0 0 0 \/ 10%\), rgb\(0 0 0 \/ 10%\)\),\s*var\(--site-bg-image\) center \/ cover no-repeat/);
   assert.doesNotMatch(css, /\.page-index::before/);
   assert.match(css, /font-variant-numeric: lining-nums/);
   assert.match(css, /\.page-index \.hero-title\s*\{[^}]*font-family: var\(--font-body\)/);

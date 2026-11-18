@@ -17,7 +17,7 @@
   align-items: start;
   gap: clamp(36px, 5vw, 72px);
   padding-block: clamp(48px, 6vw, 80px);
-  border-top: 1px solid rgb(229 169 60 / 22%);
+  border-top: 1px solid #fff;
 }
 .inspiration-section-heading {
   display: grid;
@@ -60,7 +60,7 @@
 .inspiration-names li {
   min-width: 0;
   padding-block: 14px;
-  border-bottom: 1px solid rgb(8 11 16 / 10%);
+  border-bottom: 1px solid #fff;
   color: var(--text-pure);
   font-family: var(--font-display);
   font-size: clamp(1.1rem, 1.55vw, 1.4rem);
@@ -83,7 +83,7 @@
   flex-wrap: wrap;
   gap: 20px 32px;
   padding-block: 32px 72px;
-  border-top: 1px solid rgb(229 169 60 / 22%);
+  border-top: 1px solid #fff;
 }
 .inspiration-odyssey button:disabled { opacity: .75; cursor: default; }
 .inspiration-placeholder {
