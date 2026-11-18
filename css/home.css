@@ -1,9 +1,8 @@
 /* Artist opening, upcoming performance, works, biography and contact. */
-/* Plain artist opening; the shared background remains outside the hero. */
 .page-index .hero-section {
+  min-height: calc(100svh - var(--header-height));
   padding: clamp(72px, 10vw, 144px) 0 clamp(40px, 6vw, 80px);
   margin-top: var(--header-height);
-  /* background: var(--bg-void); */
 }
 .page-index .hero-name,
 .page-index .hero-content {
@@ -14,17 +13,31 @@
 }
 .page-index .hero-title {
   margin: 0;
+  font-family: var(--font-body);
   color: var(--text-pure);
-  font-size: clamp(3.5rem, 12vw, 9.5rem);
+  font-size: clamp(1.1667rem, 4vw, 3.1667rem);
   font-weight: 600;
-  line-height: 1.05;
+  display: inline-flex;
+  align-items: flex-start;
+  line-height: 1;
+  font-variant-numeric: lining-nums;
   letter-spacing: -0.055em;
   white-space: nowrap;
-  animation: momz14-entrance 1400ms cubic-bezier(0.16, 0.7, 0.25, 1) both;
+
 }
-.page-index .hero-title .title-accent {
-  color: inherit;
+.page-index .hero-title > span {
+  display: inline-block;
+  line-height: inherit;
+  font: inherit;
+  vertical-align: top;
+  animation: momz14-entrance 1500ms cubic-bezier(.22, .61, .36, 1) both;
 }
+.page-index .hero-title > span:nth-child(1) { --title-x: -3em; --title-y: -2em; }
+.page-index .hero-title > span:nth-child(2) { --title-x: 1.8em; --title-y: -2.4em; }
+.page-index .hero-title > span:nth-child(3) { --title-x: -2.2em; --title-y: 1.7em; }
+.page-index .hero-title > span:nth-child(4) { --title-x: 2.8em; --title-y: 2em; }
+.page-index .hero-title > span:nth-child(5) { --title-x: .8em; --title-y: -2em; }
+.page-index .hero-title > span:nth-child(6) { --title-x: -1.4em; --title-y: 2.5em; }
 .page-index .hero-content {
   padding-top: 32px;
 }
@@ -37,7 +50,7 @@
   margin: 0 auto 16px;
   max-width: none;
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   line-height: 1.8;
 }
 .page-index .hero-tagline {
@@ -59,7 +72,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px 24px;
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   margin-top: 24px;
 }
@@ -94,14 +107,25 @@
 .page-index #discover .row > .col-lg-5 {
   order: 1;
 }
+.page-index main p:where(:not(.hero-designation, .hero-tagline, .section-lead, .track-description, .player-status)) {
+  font-size: 1.0625rem;
+}
+.page-index main p.section-lead { font-size: calc(clamp(1rem, 1.5vw, 1.15rem) + 1px); }
+.page-index main :is(.section-tag, .info-label, .current-track-meta, .player-badge, .player-status, .audio-time-row, .discover-image-caption, .galaxy-astronomy-badge, .momz-form-label),
+.page-index .studio-grid-item figcaption span:last-child {
+  font-size: .85rem;
+}
+.page-index main :is(p, span, a, div).small,
+.page-index main .info-val { font-size: .9375rem; }
+
 @keyframes momz14-entrance {
   from {
     opacity: 0;
-    transform: translateY(0.12em);
+    transform: translate(var(--title-x), var(--title-y)) scale(1.72);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(0, 0) scale(1);
   }
 }
 @media (max-width: 767.98px) {
@@ -109,7 +133,7 @@
     padding-block: 64px 48px;
   }
   .page-index .hero-title {
-    font-size: clamp(3.5rem, 14vw, 6rem);
+    font-size: clamp(1.1667rem, 4.6667vw, 2rem);
   }
   .page-index .hero-content {
     padding-top: 24px;
@@ -123,7 +147,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .page-index .hero-title {
+  .page-index .hero-title > span {
     animation: none;
     opacity: 1;
     transform: none;
