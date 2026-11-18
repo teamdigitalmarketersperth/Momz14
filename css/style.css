@@ -983,7 +983,7 @@ figure {
   border: 0;
   border-bottom: 1px solid #fff;
   border-radius: 0;
-  background: var(--bg-carbon);
+  background: #ffffff6b;
   color: var(--text-pure);
   font-size: 1rem;
 }
